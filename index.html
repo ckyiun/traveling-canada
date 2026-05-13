@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>探索楓葉之國 - 加拿大暑期夢幻之旅 | 悠遊旅行社</title>
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts (Inter 和 Noto Sans TC) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- 引入 Font Awesome 尋找圖標 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        'canada-red': '#FF0000', // 加拿大國旗紅
+                        'canada-dark': '#8B0000',
+                        'forest-green': '#2E8B57',
+                        'lake-blue': '#4682B4',
+                        'mountain-gray': '#708090'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 自訂樣式，增添大自然氛圍 */
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            /* 使用加拿大著名景點路易斯湖(Lake Louise)作為背景圖示意 */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 表單輸入框聚焦效果 */
+        .form-input:focus {
+            border-color: #4682B4;
+            box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.2);
+            outline: none;
+        }
+
+        /* 楓葉裝飾動畫 */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .leaf-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 導覽列 -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <i class="fa-brands fa-canadian-maple-leaf text-canada-red text-3xl leaf-float"></i>
+                    <span class="font-bold text-2xl tracking-wider text-gray-800">悠遊旅行社</span>
+                </div>
+                <!-- 桌面版選單 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#tours" class="text-gray-600 hover:text-canada-red px-3 py-2 rounded-md text-sm font-medium transition-colors">精選行程</a>
+                    <a href="#features" class="text-gray-600 hover:text-canada-red px-3 py-2 rounded-md text-sm font-medium transition-colors">加拿大特色</a>
+                    <a href="#survey" class="bg-canada-red text-white hover:bg-canada-dark px-5 py-2 rounded-full text-sm font-medium transition-colors shadow-md">填寫意願調查</a>
+                </div>
+                <!-- 手機版選單按鈕 (為簡化，此處僅保留結構，不實作 JS 開關) -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-600 hover:text-gray-900 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主視覺區 (Hero Section) -->
+    <header class="hero-bg relative pt-20 h-[80vh] min-h-[600px] flex items-center justify-center text-center">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/40"></div>
+        <div class="relative z-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+            <span class="block text-white/90 font-semibold tracking-widest uppercase text-sm mb-4">Summer Vacation in Canada</span>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                探索楓葉之國<br>
+                <span class="text-amber-300">暑期夢幻避暑之旅</span>
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-100 max-w-2xl mx-auto mb-10 drop-shadow-md">
+                逃離炎熱酷暑，漫步於洛磯山脈的壯麗湖光山色中，體驗道地楓糖文化。早鳥優惠實施中，立即規劃您的完美假期！
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#tours" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors duration-300">探索行程</a>
+                <a href="#survey" class="px-8 py-4 bg-canada-red text-white rounded-full font-bold shadow-lg shadow-red-500/30 hover:bg-canada-dark transition-colors duration-300 border border-transparent">領取早鳥折扣</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 旅遊資訊區 (Tour Information) -->
+    <section id="tours" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">暑期熱門精選行程</h2>
+                <div class="w-24 h-1 bg-canada-red mx-auto rounded-full mb-6"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">我們為您精心策劃了多條加拿大經典路線，無論是自然風光還是城市探索，都能滿足您的期待。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 行程 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover flex flex-col h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- 示意圖：班夫國家公園 -->
+                        <img src="https://images.unsplash.com/photo-1542668595-fa9394e5b686?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="加拿大洛磯山脈" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-canada-red text-white text-xs font-bold px-3 py-1 rounded-full">熱銷 No.1</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 text-sm text-mountain-gray mb-3">
+                            <i class="fa-regular fa-clock"></i> 10天7夜
+                            <span class="mx-2">|</span>
+                            <i class="fa-solid fa-plane-departure"></i> 溫哥華進出
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">洛磯山脈全覽・四大國家公園巡禮</h3>
+                        <p class="text-gray-600 mb-6 flex-grow line-clamp-3">深入班夫、露易絲湖、優鶴、冰河四大國家公園，乘坐巨輪冰原雪車踏上哥倫比亞大冰原，感受大自然的鬼斧神工。</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through block">原價 $98,000</span>
+                                <span class="text-2xl font-bold text-canada-red">$88,800<span class="text-sm font-normal text-gray-500"> 起</span></span>
+                            </div>
+                            <button onclick="document.getElementById('tour-select').value='rocky-10d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 行程 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover flex flex-col h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- 示意圖：尼加拉瀑布 -->
+                        <img src="https://images.unsplash.com/photo-1489674267075-cee793167910?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="尼加拉大瀑布" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-lake-blue text-white text-xs font-bold px-3 py-1 rounded-full">浪漫首選</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 text-sm text-mountain-gray mb-3">
+                            <i class="fa-regular fa-clock"></i> 8天5夜
+                            <span class="mx-2">|</span>
+                            <i class="fa-solid fa-plane-departure"></i> 多倫多進出
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">加東楓情・尼加拉瀑布與法式雙城</h3>
+                        <p class="text-gray-600 mb-6 flex-grow line-clamp-3">近距離感受尼加拉大瀑布的震撼，漫步於充滿法式風情的蒙特婁與魁北克古城，品嚐道地法式料理與楓糖甜點。</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through block">原價 $85,000</span>
+                                <span class="text-2xl font-bold text-canada-red">$76,900<span class="text-sm font-normal text-gray-500"> 起</span></span>
+                            </div>
+                            <button onclick="document.getElementById('tour-select').value='east-8d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 行程 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover flex flex-col h-full">
+                    <div class="relative h-64 overflow-hidden">
+                        <!-- 示意圖：溫哥華市區 -->
+                        <img src="https://images.unsplash.com/photo-1559511260-66a654ae982a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="溫哥華" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-forest-green text-white text-xs font-bold px-3 py-1 rounded-full">樂活親子</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-center gap-2 text-sm text-mountain-gray mb-3">
+                            <i class="fa-regular fa-clock"></i> 7天4夜
+                            <span class="mx-2">|</span>
+                            <i class="fa-solid fa-plane-departure"></i> 溫哥華進出
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">漫遊溫哥華・維多利亞賞鯨慢活之旅</h3>
+                        <p class="text-gray-600 mb-6 flex-grow line-clamp-3">獲選全球最宜居城市，體驗史丹利公園單車漫遊，搭乘渡輪前往維多利亞尋找野生虎鯨蹤跡，適合全家大小輕鬆遊。</p>
+                        <div class="mt-auto border-t border-gray-100 pt-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-xs text-gray-500 line-through block">原價 $72,000</span>
+                                <span class="text-2xl font-bold text-canada-red">$65,500<span class="text-sm font-normal text-gray-500"> 起</span></span>
+                            </div>
+                            <button onclick="document.getElementById('tour-select').value='van-7d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色介紹區 -->
+    <section id="features" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">為何選擇夏天拜訪加拿大？</h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        加拿大的夏天氣候涼爽宜人，平均溫度約在 20°C 左右，是避暑的最佳勝地。日照時間長，讓您有更多時間探索壯麗的自然景觀與充滿活力的城市。
+                    </p>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-lake-blue mt-1">
+                                <i class="fa-solid fa-mountain-sun text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900">融雪後的最美湖泊</h4>
+                                <p class="mt-2 text-gray-600">夏季是欣賞洛磯山脈冰河湖的最佳時機，湖水呈現不可思議的寶石藍色，如露易絲湖、夢蓮湖，美不勝收。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-green-100 text-forest-green mt-1">
+                                <i class="fa-solid fa-leaf text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900">豐富的戶外活動</h4>
+                                <p class="mt-2 text-gray-600">氣候溫和，非常適合健行、泛舟、騎自行車，甚至是搭乘直升機鳥瞰冰川，體驗多樣化的戶外樂趣。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-orange-100 text-orange-600 mt-1">
+                                <i class="fa-solid fa-calendar-star text-xl"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900">熱鬧的夏季慶典</h4>
+                                <p class="mt-2 text-gray-600">各地舉辦豐富的夏日慶典，如卡加立牛仔節 (Calgary Stampede)，讓您深入體驗當地的熱情與文化。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative">
+                    <!-- 裝飾圖片網格 -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="加拿大獨木舟" class="rounded-2xl w-full h-64 object-cover shadow-lg transform translate-y-8">
+                        <img src="https://images.unsplash.com/photo-1520699049698-acd2fce18736?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="加拿大野生動物" class="rounded-2xl w-full h-64 object-cover shadow-lg">
+                    </div>
+                    <!-- 裝飾圓圈 -->
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+                    <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅遊意見調查表區 -->
+    <section id="survey" class="py-20 relative overflow-hidden">
+        <!-- 背景裝飾 -->
+        <div class="absolute inset-0 bg-gray-900 z-0">
+            <img src="https://images.unsplash.com/photo-1513569771920-c9e1d31714cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="背景" class="w-full h-full object-cover opacity-20">
+        </div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
+                <!-- 表單標頭 -->
+                <div class="bg-gradient-to-r from-canada-red to-red-800 py-8 px-8 text-center">
+                    <i class="fa-regular fa-clipboard text-4xl text-white mb-3"></i>
+                    <h2 class="text-3xl font-bold text-white mb-2">暑期加拿大旅遊意願調查</h2>
+                    <p class="text-red-100">感謝您對我們的行程感興趣！填寫下方表單，旅遊顧問將盡快與您聯繫，並提供 <span class="font-bold text-yellow-300">專屬早鳥優惠折扣碼</span>。</p>
+                </div>
+
+                <!-- 表單本體 -->
+                <form id="tourSurveyForm" class="p-8 sm:p-12" onsubmit="return handleFormSubmit(event)">
+                    
+                    <!-- 個人資料區塊 -->
+                    <div class="mb-10">
+                        <h3 class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-6 flex items-center">
+                            <i class="fa-solid fa-user-circle text-lake-blue mr-2"></i> 個人資料 (Personal Info)
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 姓名 -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label for="name" class="block text-sm font-semibold text-gray-700 mb-1">姓名 <span class="text-red-500">*</span></label>
+                                <input type="text" id="name" name="name" required placeholder="請輸入真實姓名" 
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                            </div>
+
+                            <!-- 電話 (需驗證) -->
+                            <div>
+                                <label for="phone" class="block text-sm font-semibold text-gray-700 mb-1">聯絡電話 <span class="text-red-500">*</span></label>
+                                <input type="tel" id="phone" name="phone" required placeholder="例如: 0912345678" 
+                                    pattern="^09\d{8}$" title="請輸入有效的手機號碼 (09開頭，共10碼)"
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                <p class="text-xs text-gray-500 mt-1" id="phone-help">格式: 09xxxxxxxx (共10碼數字)</p>
+                            </div>
+
+                            <!-- Email (需驗證) -->
+                            <div>
+                                <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">電子郵件 <span class="text-red-500">*</span></label>
+                                <input type="email" id="email" name="email" required placeholder="example@email.com" 
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                <p class="text-xs text-gray-500 mt-1" id="email-error" style="display:none; color:red;">請輸入有效的 Email 格式</p>
+                            </div>
+
+                            <!-- 地址 -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label for="address" class="block text-sm font-semibold text-gray-700 mb-1">通訊地址</label>
+                                <input type="text" id="address" name="address" placeholder="請輸入聯絡地址 (選填)" 
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 行程相關區塊 -->
+                    <div class="mb-10">
+                        <h3 class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-6 flex items-center">
+                            <i class="fa-solid fa-map-location-dot text-forest-green mr-2"></i> 行程意願 (Trip Preferences)
+                        </h3>
+
+                        <div class="space-y-6">
+                            <!-- 1. 參加那個行程？ -->
+                            <div>
+                                <label for="tour-select" class="block text-sm font-semibold text-gray-700 mb-1">1. 您對哪一個行程最感興趣？ <span class="text-red-500">*</span></label>
+                                <div class="relative">
+                                    <select id="tour-select" name="tour" required
+                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 appearance-none transition-all duration-200">
+                                        <option value="" disabled selected>-- 請選擇行程 --</option>
+                                        <option value="rocky-10d">【熱銷】洛磯山脈全覽・四大國家公園巡禮 (10天7夜)</option>
+                                        <option value="east-8d">【浪漫】加東楓情・尼加拉瀑布與法式雙城 (8天5夜)</option>
+                                        <option value="van-7d">【親子】漫遊溫哥華・維多利亞賞鯨慢活之旅 (7天4夜)</option>
+                                        <option value="custom">希望客製化行程 / 其他</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                                        <i class="fa-solid fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. 參加日期 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="date-start" class="block text-sm font-semibold text-gray-700 mb-1">2. 預計出發日期區間 (起)</label>
+                                    <input type="date" id="date-start" name="date-start" min="2024-06-01" max="2024-09-30"
+                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                </div>
+                                <div>
+                                    <label for="date-end" class="block text-sm font-semibold text-gray-700 mb-1">預計回程日期區間 (迄)</label>
+                                    <input type="date" id="date-end" name="date-end" min="2024-06-01" max="2024-10-15"
+                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                </div>
+                                <p class="text-xs text-gray-500 col-span-1 md:col-span-2 mt-0">暑期旺季建議為 7月 至 8月。</p>
+                            </div>
+
+                            <!-- 3. 參加行程的原因 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">3. 想參加加拿大旅遊的主要原因？ (可複選)</label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="nature" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">欣賞自然景觀</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="weather" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">避暑/氣候宜人</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="family" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">家庭親子旅遊</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="food" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">品嚐美食/楓糖</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="culture" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">體驗異國文化</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                        <input type="checkbox" name="reason" value="honeymoon" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">蜜月/情侶出遊</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 4. 其他建議 -->
+                            <div>
+                                <label for="comments" class="block text-sm font-semibold text-gray-700 mb-1">4. 其他需求或建議</label>
+                                <textarea id="comments" name="comments" rows="4" placeholder="例如：有特殊的飲食需求（素食）、希望增加某個特定景點，或是同行的特殊狀況等..." 
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200 resize-y"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 隱私權與送出按鈕 -->
+                    <div class="flex items-start mb-8">
+                        <div class="flex items-center h-5">
+                            <input id="privacy" name="privacy" type="checkbox" required class="w-4 h-4 text-canada-red bg-gray-100 border-gray-300 rounded focus:ring-canada-red">
+                        </div>
+                        <div class="ml-2 text-sm">
+                            <label for="privacy" class="font-medium text-gray-700">我同意隱私權政策</label>
+                            <p class="text-gray-500 text-xs">我們將妥善保管您的個人資料，僅用於本次行程規劃與聯絡使用。</p>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-canada-red text-white text-lg font-bold rounded-full shadow-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 transform hover:-translate-y-1">
+                            <i class="fa-regular fa-paper-plane mr-2"></i> 送出表單並領取優惠
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 表單送出成功訊息 (預設隱藏) -->
+                <div id="successMessage" class="hidden p-12 text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-check text-4xl text-green-500"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold text-gray-900 mb-4">表單已成功送出！</h3>
+                    <p class="text-lg text-gray-600 mb-6">感謝您的填寫。您的專屬早鳥優惠碼為：<br><span class="inline-block mt-2 px-4 py-2 bg-yellow-100 text-yellow-800 font-bold text-2xl rounded border border-yellow-300 tracking-wider">MAPLE2024</span></p>
+                    <p class="text-gray-500 mb-8">我們的旅遊顧問將於 1-2 個工作天內透過電話或 Email 與您聯繫。</p>
+                    <button onclick="resetForm()" class="px-6 py-2 bg-gray-200 text-gray-700 font-semibold rounded-full hover:bg-gray-300 transition-colors">
+                        返回填寫新表單
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-gray-800 pb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fa-brands fa-canadian-maple-leaf text-canada-red text-2xl"></i>
+                        <span class="font-bold text-xl tracking-wider">悠遊旅行社</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        為您打造最完美的加拿大之旅。擁有超過 20 年北美旅遊規劃經驗，提供最專業、貼心的服務。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-canada-red hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-canada-red hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-canada-red hover:text-white transition-colors"><i class="fa-brands fa-line"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2 inline-block">聯絡我們</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-start"><i class="fa-solid fa-phone mt-1 mr-3 w-4"></i> 02-2345-6789</li>
+                        <li class="flex items-start"><i class="fa-solid fa-envelope mt-1 mr-3 w-4"></i> service@yoyotravel.com.tw</li>
+                        <li class="flex items-start"><i class="fa-solid fa-location-dot mt-1 mr-3 w-4"></i> 台北市信義區信義路五段7號 (台北101)</li>
+                        <li class="flex items-start"><i class="fa-solid fa-clock mt-1 mr-3 w-4"></i> 營業時間：週一至週五 09:00 - 18:00</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2 inline-block">快速連結</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">關於我們</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">加拿大簽證資訊 (eTA)</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">旅遊常見問題</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">隱私權政策</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">服務條款</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-xs">
+                <p>&copy; 2024 悠遊旅行社 Yoyo Travel Agency. All rights reserved.</p>
+                <p class="mt-1">此網頁為示範用途 (Demo Only)，非真實旅行社網站。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 導覽列滾動效果
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 10) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('bg-white/90', 'bg-white/95');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('bg-white/95', 'bg-white/90');
+            }
+        });
+
+        // Email 額外自訂驗證 (HTML5 已有基本驗證，此處加強提示)
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('email-error');
+        
+        emailInput.addEventListener('blur', function() {
+            // 簡易的 Email 格式正則表達式
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                emailError.style.display = 'block';
+                this.classList.add('border-red-500');
+            } else {
+                emailError.style.display = 'none';
+                this.classList.remove('border-red-500');
+            }
+        });
+
+        // 處理表單提交
+        function handleFormSubmit(event) {
+            event.preventDefault(); // 阻止表單實際送出導致頁面重整
+            
+            // 在此處通常會使用 fetch() 或 XMLHttpRequest 將資料送到後端伺服器
+            // 為了示範，我們直接顯示成功訊息
+
+            const form = document.getElementById('tourSurveyForm');
+            const successMsg = document.getElementById('successMessage');
+
+            // 簡單隱藏表單，顯示成功畫面
+            form.style.opacity = '0';
+            setTimeout(() => {
+                form.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+                // 平滑滾動到提示訊息頂部
+                successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+
+            return false;
+        }
+
+        // 重置表單 (讓使用者可以重新填寫)
+        function resetForm() {
+            const form = document.getElementById('tourSurveyForm');
+            const successMsg = document.getElementById('successMessage');
+            
+            form.reset(); // 清空表單資料
+            
+            successMsg.classList.add('hidden');
+            form.classList.remove('hidden');
+            setTimeout(() => {
+                form.style.opacity = '1';
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 50);
+        }
+
+        // 確保結束日期不早於開始日期
+        const startDateInput = document.getElementById('date-start');
+        const endDateInput = document.getElementById('date-end');
+
+        startDateInput.addEventListener('change', function() {
+            if(this.value) {
+                endDateInput.min = this.value;
+            }
+        });
+    </script>
+</body>
+</html>
