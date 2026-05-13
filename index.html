@@ -55,6 +55,31 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
 
+        /* 按鈕 Hover 效果增強 */
+        .btn-hover-effect {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-hover-effect::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotate(45deg) translateY(100%);
+            transition: all 0.4s ease;
+            border-radius: 50%;
+        }
+        .btn-hover-effect:hover::after {
+            transform: translate(-50%, -50%) rotate(45deg) translateY(0);
+        }
+        .btn-hover-scale:hover {
+            transform: scale(1.05);
+        }
+
         /* 表單輸入框聚焦效果 */
         .form-input:focus {
             border-color: #4682B4;
@@ -113,8 +138,8 @@
                 逃離炎熱酷暑，漫步於洛磯山脈的壯麗湖光山色中，體驗道地楓糖文化。早鳥優惠實施中，立即規劃您的完美假期！
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#tours" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:bg-gray-100 transition-colors duration-300">探索行程</a>
-                <a href="#survey" class="px-8 py-4 bg-canada-red text-white rounded-full font-bold shadow-lg shadow-red-500/30 hover:bg-canada-dark transition-colors duration-300 border border-transparent">領取早鳥折扣</a>
+                <a href="#tours" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold shadow-lg hover:bg-gray-100 btn-hover-effect btn-hover-scale">探索行程</a>
+                <a href="#survey" class="px-8 py-4 bg-canada-red text-white rounded-full font-bold shadow-lg shadow-red-500/30 hover:bg-canada-dark btn-hover-effect btn-hover-scale border border-transparent">領取早鳥折扣</a>
             </div>
         </div>
     </header>
@@ -150,7 +175,7 @@
                                 <span class="text-2xl font-bold text-canada-red">$88,800<span class="text-sm font-normal text-gray-500"> 起</span></span>
                             </div>
                             <button onclick="document.getElementById('tour-select').value='rocky-10d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
-                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1 transform transition-transform group-hover:translate-x-1"></i>
                             </button>
                         </div>
                     </div>
@@ -177,7 +202,7 @@
                                 <span class="text-2xl font-bold text-canada-red">$76,900<span class="text-sm font-normal text-gray-500"> 起</span></span>
                             </div>
                             <button onclick="document.getElementById('tour-select').value='east-8d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
-                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1 transform transition-transform group-hover:translate-x-1"></i>
                             </button>
                         </div>
                     </div>
@@ -204,7 +229,7 @@
                                 <span class="text-2xl font-bold text-canada-red">$65,500<span class="text-sm font-normal text-gray-500"> 起</span></span>
                             </div>
                             <button onclick="document.getElementById('tour-select').value='van-7d'; document.getElementById('survey').scrollIntoView();" class="text-lake-blue font-semibold hover:text-blue-800 transition-colors">
-                                我有興趣 <i class="fa-solid fa-arrow-right ml-1"></i>
+                                我有興趣 <i class="fa-solid fa-arrow-right ml-1 transform transition-transform group-hover:translate-x-1"></i>
                             </button>
                         </div>
                     </div>
@@ -256,7 +281,7 @@
                     <!-- 裝飾圖片網格 -->
                     <div class="grid grid-cols-2 gap-4">
                         <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="加拿大獨木舟" class="rounded-2xl w-full h-64 object-cover shadow-lg transform translate-y-8">
-                        <img src="https://images.unsplash.com/photo-1520699049698-acd2fce18736?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="加拿大野生動物" class="rounded-2xl w-full h-64 object-cover shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1589656966895-2f33e7653819?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x600/2E8B57/ffffff?text=Canadian+Wildlife'" alt="加拿大野生動物" class="rounded-2xl w-full h-64 object-cover shadow-lg">
                     </div>
                     <!-- 裝飾圓圈 -->
                     <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
@@ -313,7 +338,17 @@
                                 <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">電子郵件 <span class="text-red-500">*</span></label>
                                 <input type="email" id="email" name="email" required placeholder="example@email.com" 
                                     class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
-                                <p class="text-xs text-gray-500 mt-1" id="email-error" style="display:none; color:red;">請輸入有效的 Email 格式</p>
+                                <p class="text-xs mt-1 hidden" id="email-error"></p>
+                            </div>
+
+                            <!-- 密碼 (新增驗證需求) -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">設定查詢密碼 (供日後查詢訂單使用) <span class="text-red-500">*</span></label>
+                                <input type="password" id="password" name="password" required placeholder="請輸入至少 8 碼英數字組合" 
+                                    minlength="8"
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                <p class="text-xs text-gray-500 mt-1" id="password-help">密碼長度需至少 8 個字元。</p>
+                                <p class="text-xs mt-1 hidden" id="password-error"></p>
                             </div>
 
                             <!-- 地址 -->
@@ -325,99 +360,73 @@
                         </div>
                     </div>
 
-                    <!-- 行程相關區塊 -->
+                    <!-- 行程意願區塊 -->
                     <div class="mb-10">
                         <h3 class="text-xl font-bold text-gray-800 border-b-2 border-gray-200 pb-2 mb-6 flex items-center">
-                            <i class="fa-solid fa-map-location-dot text-forest-green mr-2"></i> 行程意願 (Trip Preferences)
+                            <i class="fa-solid fa-map-location-dot text-forest-green mr-2"></i> 行程意願 (Tour Preferences)
                         </h3>
-
-                        <div class="space-y-6">
-                            <!-- 1. 參加那個行程？ -->
-                            <div>
-                                <label for="tour-select" class="block text-sm font-semibold text-gray-700 mb-1">1. 您對哪一個行程最感興趣？ <span class="text-red-500">*</span></label>
-                                <div class="relative">
-                                    <select id="tour-select" name="tour" required
-                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 appearance-none transition-all duration-200">
-                                        <option value="" disabled selected>-- 請選擇行程 --</option>
-                                        <option value="rocky-10d">【熱銷】洛磯山脈全覽・四大國家公園巡禮 (10天7夜)</option>
-                                        <option value="east-8d">【浪漫】加東楓情・尼加拉瀑布與法式雙城 (8天5夜)</option>
-                                        <option value="van-7d">【親子】漫遊溫哥華・維多利亞賞鯨慢活之旅 (7天4夜)</option>
-                                        <option value="custom">希望客製化行程 / 其他</option>
-                                    </select>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </div>
-                                </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- 參加哪個行程 -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label for="tour-select" class="block text-sm font-semibold text-gray-700 mb-1">您想參加哪個行程？ <span class="text-red-500">*</span></label>
+                                <select id="tour-select" name="tour-select" required
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                                    <option value="" disabled selected>請選擇一個行程...</option>
+                                    <option value="rocky-10d">洛磯山脈全覽・四大國家公園巡禮 (10天7夜)</option>
+                                    <option value="east-8d">加東楓情・尼加拉瀑布與法式雙城 (8天5夜)</option>
+                                    <option value="van-7d">漫遊溫哥華・維多利亞賞鯨慢活之旅 (7天4夜)</option>
+                                </select>
                             </div>
 
-                            <!-- 2. 參加日期 -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label for="date-start" class="block text-sm font-semibold text-gray-700 mb-1">2. 預計出發日期區間 (起)</label>
-                                    <input type="date" id="date-start" name="date-start" min="2024-06-01" max="2024-09-30"
-                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
-                                </div>
-                                <div>
-                                    <label for="date-end" class="block text-sm font-semibold text-gray-700 mb-1">預計回程日期區間 (迄)</label>
-                                    <input type="date" id="date-end" name="date-end" min="2024-06-01" max="2024-10-15"
-                                        class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
-                                </div>
-                                <p class="text-xs text-gray-500 col-span-1 md:col-span-2 mt-0">暑期旺季建議為 7月 至 8月。</p>
+                            <!-- 參加日期 (開始) -->
+                            <div>
+                                <label for="date-start" class="block text-sm font-semibold text-gray-700 mb-1">預計出發日期 <span class="text-red-500">*</span></label>
+                                <input type="date" id="date-start" name="date-start" required
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
                             </div>
 
-                            <!-- 3. 參加行程的原因 -->
+                            <!-- 參加日期 (結束) -->
                             <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">3. 想參加加拿大旅遊的主要原因？ (可複選)</label>
-                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="nature" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">欣賞自然景觀</span>
+                                <label for="date-end" class="block text-sm font-semibold text-gray-700 mb-1">預計回程日期 <span class="text-red-500">*</span></label>
+                                <input type="date" id="date-end" name="date-end" required
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200">
+                            </div>
+
+                            <!-- 參加原因 -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">參加行程的主要原因 (可複選)</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" name="reason" value="nature" class="w-4 h-4 text-canada-red rounded border-gray-300 focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">欣賞自然風光</span>
                                     </label>
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="weather" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">避暑/氣候宜人</span>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" name="reason" value="weather" class="w-4 h-4 text-canada-red rounded border-gray-300 focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">夏季避暑</span>
                                     </label>
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="family" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">家庭親子旅遊</span>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" name="reason" value="culture" class="w-4 h-4 text-canada-red rounded border-gray-300 focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">體驗當地文化</span>
                                     </label>
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="food" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">品嚐美食/楓糖</span>
-                                    </label>
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="culture" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">體驗異國文化</span>
-                                    </label>
-                                    <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                        <input type="checkbox" name="reason" value="honeymoon" class="w-4 h-4 text-canada-red rounded focus:ring-canada-red">
-                                        <span class="text-gray-700 text-sm">蜜月/情侶出遊</span>
+                                    <label class="flex items-center space-x-2 cursor-pointer">
+                                        <input type="checkbox" name="reason" value="family" class="w-4 h-4 text-canada-red rounded border-gray-300 focus:ring-canada-red">
+                                        <span class="text-gray-700 text-sm">親子/家族旅遊</span>
                                     </label>
                                 </div>
                             </div>
 
-                            <!-- 4. 其他建議 -->
-                            <div>
-                                <label for="comments" class="block text-sm font-semibold text-gray-700 mb-1">4. 其他需求或建議</label>
-                                <textarea id="comments" name="comments" rows="4" placeholder="例如：有特殊的飲食需求（素食）、希望增加某個特定景點，或是同行的特殊狀況等..." 
-                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200 resize-y"></textarea>
+                            <!-- 其他建議 -->
+                            <div class="col-span-1 md:col-span-2">
+                                <label for="comments" class="block text-sm font-semibold text-gray-700 mb-1">其他建議或特殊需求</label>
+                                <textarea id="comments" name="comments" rows="3" placeholder="例如：飲食禁忌、需要加床等..."
+                                    class="form-input w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 transition-all duration-200"></textarea>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 隱私權與送出按鈕 -->
-                    <div class="flex items-start mb-8">
-                        <div class="flex items-center h-5">
-                            <input id="privacy" name="privacy" type="checkbox" required class="w-4 h-4 text-canada-red bg-gray-100 border-gray-300 rounded focus:ring-canada-red">
-                        </div>
-                        <div class="ml-2 text-sm">
-                            <label for="privacy" class="font-medium text-gray-700">我同意隱私權政策</label>
-                            <p class="text-gray-500 text-xs">我們將妥善保管您的個人資料，僅用於本次行程規劃與聯絡使用。</p>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-canada-red text-white text-lg font-bold rounded-full shadow-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="text-center mt-8">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-canada-red text-white text-lg font-bold rounded-full shadow-lg hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 btn-hover-effect btn-hover-scale">
                             <i class="fa-regular fa-paper-plane mr-2"></i> 送出表單並領取優惠
                         </button>
                     </div>
@@ -506,10 +515,28 @@
             // 簡易的 Email 格式正則表達式
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (this.value && !emailRegex.test(this.value)) {
-                emailError.style.display = 'block';
+                emailError.textContent = '請輸入有效的 Email 格式';
+                emailError.classList.remove('hidden');
+                emailError.classList.add('text-red-500');
                 this.classList.add('border-red-500');
             } else {
-                emailError.style.display = 'none';
+                emailError.classList.add('hidden');
+                this.classList.remove('border-red-500');
+            }
+        });
+
+        // 密碼長度驗證
+        const passwordInput = document.getElementById('password');
+        const passwordError = document.getElementById('password-error');
+
+        passwordInput.addEventListener('blur', function() {
+            if (this.value && this.value.length < 8) {
+                passwordError.textContent = '密碼長度不足，請至少輸入 8 個字元';
+                passwordError.classList.remove('hidden');
+                passwordError.classList.add('text-red-500');
+                this.classList.add('border-red-500');
+            } else {
+                passwordError.classList.add('hidden');
                 this.classList.remove('border-red-500');
             }
         });
@@ -518,6 +545,25 @@
         function handleFormSubmit(event) {
             event.preventDefault(); // 阻止表單實際送出導致頁面重整
             
+            // 二次驗證確保所有必填與格式正確
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            let isValid = true;
+
+            if (!emailRegex.test(emailInput.value)) {
+                emailInput.focus();
+                emailInput.blur(); // 觸發錯誤提示
+                isValid = false;
+            }
+            if (passwordInput.value.length < 8) {
+                passwordInput.focus();
+                passwordInput.blur(); // 觸發錯誤提示
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return false; // 若有錯誤則停止送出
+            }
+
             // 在此處通常會使用 fetch() 或 XMLHttpRequest 將資料送到後端伺服器
             // 為了示範，我們直接顯示成功訊息
 
